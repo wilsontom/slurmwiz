@@ -13,11 +13,11 @@ slurm_convert(data_in, save_path, file_ext, conversion_args)
 
 \item{file_ext}{the file extension of the raw files to convert (ie, `raw`, `lcd`, `wiff`)}
 
-\item{conversion_args}{a character string of `msconvert` arguments (ie, `--filter peakPicking true 1-`)
+\item{conversion_args}{a character string of `msconvert` arguments without the `--filter` prefix (ie, `peakPicking true 1-`)
 #' @example
 \dontrun{
 slurm_convert(data_in = 'hpc/storage/my_raw_data', save_path = 'hpc/home/my_converted_data',
-file_ext = 'raw', conversion_args = c('--filter peakPicking true 1-'))'
+file_ext = 'raw', conversion_args = c('peakPicking true 1-'))'
 }}
 }
 \description{
