@@ -1,4 +1,4 @@
-JOB_NAME: 'msconvert mzml conversion'
+JOB_NAME: 'msconvert_mzml_conversion'
 IMAGE: '/ibers/ernie/scratch/tpw2/pwiz_sandbox'
 TMPMYWINEPREFIX: "`mktemp -d /dev/shm/wineXXX`"
-TMPDIR: 'ibers/ernie/scratch/tpw2/tmpfiles'
+TMPDIR: '/ibers/ernie/scratch/tpw2/tmpfiles'
