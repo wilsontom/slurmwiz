@@ -68,7 +68,7 @@ slurm_convert <-
       {
         TMPMYWINEPREFIX
       },
-      ':/mywinepreix --writable-tmpfs',
+      ':/mywineprefix --writable-tmpfs',
       {
         IMAGE
       },
