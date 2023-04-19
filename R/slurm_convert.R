@@ -72,15 +72,15 @@ slurm_convert <-
       {
         IMAGE
       },
-      'mywine msconvert',
+      ' mywine msconvert',
       {
         conversion_args
       },
-      '/data/*.',
+      ' /data/*.',
       {
         file_ext
       },
-      '-o /outpath'
+      ' -o /outpath'
     )
 
 
