@@ -24,5 +24,17 @@ tar --create --file pwiz_sandbox.tar pwiz_sandbox
 scp pwiz_sandbox.tar user@hpc
 ```
 
+### Converting Files
+
+Load the `slurmwiz` library and run the `slurm_convert` function to submit your msconvert job to the SLURM workload manager.
+
+```r
+library(slurmwiz)
+
+slurm_convert(data_in = '/scratch/my_raw_files', save_path = '/scratch/my_mzml_data', file_ext = 'raw', conversion_args = NULL)
+
+```
+
+
 
 
