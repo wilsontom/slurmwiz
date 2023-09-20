@@ -6,12 +6,11 @@
 #' @param save_path the absolute file path where converted data files will be saved to
 #' @param file_ext the file extension of the raw files to convert (ie, `raw`, `lcd`, `wiff`)
 #' @param conversion_args a character string of `msconvert` arguments without the `--filter` prefix (ie, `peakPicking true 1-`)
-#'#' @example
+#' @examples
 #' \dontrun{
 #' slurm_convert(data_in = 'hpc/storage/my_raw_data', save_path = 'hpc/home/my_converted_data',
-#' file_ext = 'raw', conversion_args = c('peakPicking true 1-'))'
+#' file_ext = 'raw', conversion_args = c('peakPicking true 1-'))
 #' }
-#'
 #' @export
 
 
