@@ -1,10 +1,10 @@
 Package: slurmwiz
 Type: Package
 Title: Convert Raw Mass Spectrometry Files
-Version: 0.1.0
+Version: 0.1.1
 Authors@R: c(
     person("Tom", "Wilson", , "tpw2@aber.ac.uk", c("aut", "cre")))
-Description: Wrapper for converting raw mass spectrometry data files using the pwiz docker container through singularity on a high performance compute cluster running SLRUM workload manager.
+Description: Wrapper for converting raw mass spectrometry data files using the pwiz docker container through apptainer on a high performance computer (HPC) cluster running SLRUM workload manager.
 License: GPL (>= 3)
 Imports: yaml,
          glue

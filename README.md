@@ -24,6 +24,26 @@ tar --create --file pwiz_sandbox.tar pwiz_sandbox
 scp pwiz_sandbox.tar user@hpc
 ```
 
+### Installing slurmwiz
+
+Before installing `slurmwiz` the system_config_file needs creating. There are three variables that need setting; `JOB_NAME`, `IMAGE` and `TMPDIR`, the `TMPMYWINEPREFIX` should be fine using the pre-filled value. 
+
+`JOB_NAME:` - This should be a character string of the job name that SLURM will use.
+
+`IMAGE:` - This is a character string of the location of the pwiz sandbox image, you created in the previous step.
+
+`TMPDIR:` - This is a character string of a directory path that can be used for temporary file creation. It is recommened that this is set to a location in your HPC's scratch space. 
+
+
+One the `system_config_file.yml` is completem, then the package can be built and installed using the following:
+
+`R CMD build slurmwiz`
+
+`R CMD INSTALL slurmwiz_0.1.1.tar.gz`
+
+
+
+
 ### Converting Files
 
 Load the `slurmwiz` library and run the `slurm_convert` function to submit your msconvert job to the SLURM workload manager.

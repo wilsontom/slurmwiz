@@ -2,21 +2,21 @@
 #'
 #' Convert raw mass spectrometry files using a combination of singularity, t
 #'
-#' @param data_in the absolute file path of the directory of raw files for conversion
-#' @param save_path the absolute file path where converted data files will be saved to
+#' @param input the absolute file path of the directory of raw files for conversion
+#' @param output the absolute file path where converted data files will be saved to
 #' @param file_ext the file extension of the raw files to convert (ie, `raw`, `lcd`, `wiff`)
 #' @param conversion_args a character string of `msconvert` arguments without the `--filter` prefix (ie, `peakPicking true 1-`)
 #' @examples
 #' \dontrun{
-#' slurm_convert(data_in = 'hpc/storage/my_raw_data', save_path = 'hpc/home/my_converted_data',
+#' slurm_convert(input = 'hpc/storage/my_raw_data', output = 'hpc/home/my_converted_data',
 #' file_ext = 'raw', conversion_args = c('peakPicking true 1-'))
 #' }
 #' @export
 
 
 slurm_convert <-
-  function(data_in,
-           save_path,
+  function(input,
+           output,
            file_ext,
            conversion_args) {
     # Reading in the system config file that should have been edited before the package was built
@@ -40,10 +40,8 @@ slurm_convert <-
 
 
 
-
-
-    if (!dir.exists(data_in)) {
-      stop('data_in directory does not exist')
+    if (!dir.exists(input)) {
+      stop('input directory does not exist')
     }
 
     slurm_preamble <- glue::glue(
@@ -72,11 +70,11 @@ slurm_convert <-
     singularity_command <- glue::glue(
       'singularity exec --cleanenv -B ',
       {
-        data_in
+        input
       },
       ':/data -B ',
       {
-        save_path
+        output
       },
       ':/outpath -B ',
       {
