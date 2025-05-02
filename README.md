@@ -51,7 +51,7 @@ Load the `slurmwiz` library and run the `slurm_convert` function to submit your 
 ```r
 library(slurmwiz)
 
-slurm_convert(data_in = '/scratch/my_raw_files', save_path = '/scratch/my_mzml_data', file_ext = 'raw', conversion_args = NULL)
+slurm_convert(input = '/scratch/my_raw_files', output = '/scratch/my_mzml_data', file_ext = 'raw', conversion_args = NULL)
 
 ```
 
