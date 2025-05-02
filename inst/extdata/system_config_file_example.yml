@@ -1,0 +1,4 @@
+JOB_NAME: 'msconvert_mzml_conversion'
+IMAGE: 
+TMPMYWINEPREFIX: "`mktemp -d /dev/shm/wineXXX`"
+TMPDIR: 
