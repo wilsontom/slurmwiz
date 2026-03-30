@@ -26,7 +26,9 @@ slurm_convert <-
     list2env(system_params, globalenv())
 
 
-
+    if('peakPicking true -1' %in% conversion_args){
+      stop('Incorrect filter argument detected')
+    }
 
     conversion_args_format <- lapply(conversion_args, function(x) {
       paste0('--filter ', '"', x, '"')
