@@ -4,47 +4,49 @@
 #'
 #' @param input the absolute file path of the directory of raw files for conversion
 #' @param output the absolute file path where converted data files will be saved to
-#' @param file_ext the file extension of the raw files to convert (ie, `raw`, `lcd`, `wiff`)
+#' @param format_out a character string of `msconvert` format for conversioin.
 #' @param conversion_args a character string of `msconvert` arguments without the `--filter` prefix (ie, `peakPicking true 1-`)
 #' @examples
 #' \dontrun{
-#' slurm_convert(input = 'hpc/storage/my_raw_data', output = 'hpc/home/my_converted_data',
-#' file_ext = 'raw', conversion_args = c('peakPicking true 1-'))
+#' slurm_convert(input = 'hpc/storage/my_raw_data', output = 'hpc/home/my_converted_data', format_out = 'mzML', conversion_args = c('peakPicking true 1-'))
 #' }
 #' @export
 
 
 slurm_convert <-
-  function(input,
-           output,
-           file_ext,
-           conversion_args) {
+  function(input, output, format_out, conversion_args) {
     # Reading in the system config file that should have been edited before the package was built
     system_params <-
       yaml::read_yaml(system.file('extdata', 'system_config_file.yml', package = 'slurmwiz'))
 
     list2env(system_params, globalenv())
 
+    if (!dir.exists(input)) {
+      stop('input directory does not exist')
+    }
 
-    if('peakPicking true -1' %in% conversion_args){
+    if (!dir.exists(output)) {
+      message('input directory does not exist......creating now')
+      dir.create(output)
+    }
+
+    if ('peakPicking true -1' %in% conversion_args) {
       stop('Incorrect filter argument detected')
     }
+
+
+    file_ext <- detect_file_type(input)
+
+    output_string <-  paste0(' --ignoreUnknownInstrumentError  --', format_out, ' ')
 
     conversion_args_format <- lapply(conversion_args, function(x) {
       paste0('--filter ', '"', x, '"')
     })
 
     conversion_args_format2 <-
-      paste0(
-        ' --ignoreUnknownInstrumentError  --mzML ',
-        do.call('paste', conversion_args_format)
-      )
+      paste0(output_string, do.call('paste', conversion_args_format))
 
 
-
-    if (!dir.exists(input)) {
-      stop('input directory does not exist')
-    }
 
     slurm_preamble <- glue::glue(
       '#!/bin/bash --login',
@@ -100,8 +102,7 @@ slurm_convert <-
 
     tmpfilepath <- tempfile(tmpdir = TMPDIR, fileext = '.slurm')
 
-    writeLines(c(slurm_preamble, '\n', singularity_command),
-               tmpfilepath)
+    writeLines(c(slurm_preamble, '\n', singularity_command), tmpfilepath)
 
     system(glue::glue('sbatch {tmpfilepath}'))
 
