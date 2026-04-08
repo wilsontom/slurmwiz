@@ -4,14 +4,14 @@
 \alias{slurm_convert}
 \title{Convert Raw Files using msconvert and SLURM}
 \usage{
-slurm_convert(data_in, save_path, file_ext, conversion_args)
+slurm_convert(input, output, format_out, conversion_args)
 }
 \arguments{
-\item{data_in}{the absolute file path of the directory of raw files for conversion}
+\item{input}{the absolute file path of the directory of raw files for conversion}
 
-\item{save_path}{the absolute file path where converted data files will be saved to}
+\item{output}{the absolute file path where converted data files will be saved to}
 
-\item{file_ext}{the file extension of the raw files to convert (ie, \code{raw}, \code{lcd}, \code{wiff})}
+\item{format_out}{a character string of \code{msconvert} format for conversioin.}
 
 \item{conversion_args}{a character string of \code{msconvert} arguments without the \code{--filter} prefix (ie, \verb{peakPicking true 1-})}
 }
@@ -20,7 +20,6 @@ Convert raw mass spectrometry files using a combination of singularity, t
 }
 \examples{
 \dontrun{
-slurm_convert(data_in = 'hpc/storage/my_raw_data', save_path = 'hpc/home/my_converted_data',
-file_ext = 'raw', conversion_args = c('peakPicking true 1-'))
+slurm_convert(input = 'hpc/storage/my_raw_data', output = 'hpc/home/my_converted_data', format_out = 'mzML', conversion_args = c('peakPicking true 1-'))
 }
 }
