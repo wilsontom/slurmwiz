@@ -1,3 +1,8 @@
+# slurmwiz v0.1.3
+
+* Refactor code to improve maintenance
+* Add test coverage
+
 # slurmwiz v0.1.2
 
 * Auto-detect file input type
