@@ -1,0 +1,2 @@
+detect_file_type        Detect File Type
+slurm_convert           Convert Raw Files using msconvert and SLURM

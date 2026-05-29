@@ -39,7 +39,7 @@ One the `system_config_file.yml` is completem, then the package can be built and
 
 `R CMD build slurmwiz`
 
-`R CMD INSTALL slurmwiz_0.1.1.tar.gz`
+`R CMD INSTALL slurmwiz_0.1.4.tar.gz`
 
 
 
@@ -54,7 +54,6 @@ library(slurmwiz)
 slurm_convert(input = '/scratch/my_raw_files', output = '/scratch/my_mzml_data', format_out = 'mzML', conversion_args = NULL)
 
 ```
-
 
 
 
