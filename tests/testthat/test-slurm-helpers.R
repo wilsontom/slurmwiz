@@ -105,6 +105,21 @@ test_that("create_slurm_script writes the expected content", {
   expect_equal(readLines(script_path), c("line-one", "", "", "line-two"))
 })
 
+test_that("run_system_command delegates to system", {
+  captured_command <- NULL
+
+  local_mocked_bindings(
+    system = function(command) {
+      captured_command <<- command
+      0
+    },
+    .package = "base"
+  )
+
+  expect_equal(slurmwiz:::run_system_command("echo hello"), 0)
+  expect_equal(captured_command, "echo hello")
+})
+
 test_that("submit_slurm_job calls system with sbatch", {
   captured_command <- NULL
 
