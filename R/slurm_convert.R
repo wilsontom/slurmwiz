@@ -28,7 +28,7 @@ validate_input_directory <- function(input) {
 
 ensure_output_directory <- function(output) {
   if (!dir.exists(output)) {
-    message("input directory does not exist......creating now")
+    message("output directory does not exist......creating now")
     dir.create(output)
   }
 
